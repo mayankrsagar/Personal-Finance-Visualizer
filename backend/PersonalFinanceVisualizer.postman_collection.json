@@ -1,0 +1,80 @@
+{
+  "info": {
+    "name": "Personal Finance Visualizer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api/transactions",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Fetch All Transactions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"]
+        }
+      }
+    },
+    {
+      "name": "Add Transaction",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 1000,\n  \"date\": \"2025-05-24\",\n  \"description\": \"Shopping\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/add",
+          "host": ["{{base_url}}"],
+          "path": ["add"]
+        }
+      }
+    },
+    {
+      "name": "Update Transaction",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 1200\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/update/:id",
+          "host": ["{{base_url}}"],
+          "path": ["update", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Delete Transaction",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/delete/:id",
+          "host": ["{{base_url}}"],
+          "path": ["delete", ":id"]
+        }
+      }
+    }
+  ]
+}
