@@ -1,104 +1,200 @@
 # Personal Finance Visualizer
 
-A simple full-stack web application to track personal finances, visualize spending trends, and manage monthly budgets.
+A full-stack web application to track personal finances, visualize spending trends, and manage monthly budgets.
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Development Stages](#development-stages)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [License](#license)
+
+## Project Overview
+
+Personal Finance Visualizer helps you effortlessly monitor your financial transactions and budgets with interactive visualizations and a user-friendly interface. Whether you're tracking everyday transactions or planning monthly expenses, this application makes managing your money simpler and more insightful.
 
 ## Features
 
-### Stage 1: Basic Transaction Tracking
+- **Transaction Management**: Seamlessly add, edit, and delete transactions with details like amount, date, and description.  
+- **Budget Oversight**: Set monthly budgets per category and compare your spending against planned amounts.  
+- **Interactive Data Visualizations**: Engage with dynamic charts (bar, pie, and comparison charts) that make financial trends easy to understand.  
+- **Responsive Design**: Enjoy a clean, adaptive dashboard that works smoothly on both desktop and mobile devices.
 
-* Add, Edit, Delete transactions (amount, date, description)
-* Transaction list view with responsive table
-* Monthly expenses bar chart
-* Form validation on frontend and backend
+## Project Structure
+
+```plaintext
+.
+├── README.md
+├── backend
+│   ├── PersonalFinanceVisualizer.postman_collection.json
+│   ├── package-lock.json
+│   ├── package.json
+│   └── src
+│       ├── config
+│       │   └── db.js
+│       ├── controllers
+│       │   ├── MonthlyBudgetController.js
+│       │   └── TransactionControllers.js
+│       ├── index.js
+│       ├── middleware
+│       │   ├── joiValidation.js
+│       │   └── validateWithJoi.js
+│       ├── models
+│       │   ├── monthlyBudget.js
+│       │   └── transaction.js
+│       ├── routes
+│       │   ├── budgetRoutes.js
+│       │   └── transactionRoutes.js
+│       ├── services
+│       │   ├── MonthlyServices.js
+│       │   └── TransactionServices.js
+│       └── utils
+│           └── validation.js
+└── frontend
+    ├── components.json
+    ├── eslint.config.mjs
+    ├── jsconfig.json
+    ├── next.config.mjs
+    ├── package-lock.json
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── public
+    └── src
+        ├── apis
+        │   └── transactionApi.js
+        ├── app
+        │   ├── chart
+        │   │   └── page.jsx
+        │   ├── dashboard
+        │   │   └── page.jsx
+        │   ├── globals.css
+        │   ├── layout.js
+        │   ├── monthlyBudget
+        │   │   └── page.jsx
+        │   └── page.js
+        ├── components
+        │   ├── BarChart.jsx
+        │   ├── BudgetPieChart.jsx
+        │   ├── Navbar.jsx
+        │   ├── PieChart.jsx
+        │   ├── SpendingInsights.jsx
+        │   ├── TransactionForm.jsx
+        │   ├── TransactionList.jsx
+        │   └── ui
+        │       ├── button.jsx
+        │       ├── card.jsx
+        │       ├── chart.jsx
+        │       ├── dialog.jsx
+        │       ├── input.jsx
+        │       ├── label.jsx
+        │       ├── menubar.jsx
+        │       └── table.jsx
+        ├── lib
+        │   └── utils.js
+        └── utils
+```
+
+## Development Stages
+
+### Stage 1: Basic Transaction Tracking
+- **CRUD Operations**: Add, edit, and delete transactions (amount, date, description).
+- **Responsive Listing**: View transactions in a responsive table layout.
+- **Monthly Analytics**: Visualize monthly expenses using a bar chart.
+- **Form Validation**: Implement both frontend and backend validations.
 
 ### Stage 2: Categories & Dashboard
-
-* All Stage 1 features
-* Predefined categories for transactions
-* Category-wise pie chart
-* Dashboard with summary cards:
-
-  * Total expenses
-  * Category breakdown
-  * Most recent transactions
+- **Categorization**: Introduce predefined categories for transactions.
+- **Category Visualization**: Create a pie chart to break down expenses by category.
+- **Dashboard Overview**: Display summary cards with total expenses, category breakdowns, and recent transactions.
 
 ### Stage 3: Budgeting & Insights
-
-* All Stage 2 features
-* Set monthly budgets per category
-* Budget vs. Actual comparison bar chart
-* Simple spending insights:
-
-  * Overall budget utilization
-  * Overspent and underutilized categories
-  * Top spending category
+- **Budget Setup**: Enable users to set monthly budgets per category.
+- **Comparative Analysis**: Offer a bar chart showing budget vs. actual spending.
+- **Spending Insights**: Provide insights into overall budget utilization, identify overspent or underutilized categories, and spotlight top spending areas.
 
 ## Tech Stack
 
-* **Frontend**: Next.js, React, shadcn/ui, Recharts, React Toastify
-* **Backend**: Node.js, Express, MongoDB, Mongoose, Joi validation
-* **Deployment**: MongoDB Atlas, Vercel
+- **Frontend**: Next.js, React, shadcn/ui, Recharts, React Toastify.
+- **Backend**: Node.js, Express, MongoDB, Mongoose, Joi (for validation).
+- **Deployment**: MongoDB Atlas for database hosting and Vercel for application hosting.
 
 ## Getting Started
 
 ### Prerequisites
 
-* Node.js >= 16
-* npm or yarn
-* MongoDB Atlas account
+- Node.js (version 16 or higher)
+- npm or yarn
+- MongoDB Atlas account
 
-### Environment Variables
+### Environment Setup
 
-Create a `.env` file in the `backend` folder with:
+Create a `.env` file inside the `backend` folder with the following content:
 
-```
+```env
 MONGO_URI=<your_mongodb_atlas_connection_string>
 PORT=5000
 ```
 
 ### Backend Setup
 
-```bash
-cd backend
-npm install
-npm run dev
-```
+1. Navigate to the `backend` directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-* Server runs on `http://localhost:5000`
-* Routes:
-
-  * **GET** `/api/transactions` — fetch all transactions
-  * **POST** `/api/transactions/add` — create transaction
-  * **PATCH** `/api/transactions/update/:id` — update transaction
-  * **DELETE** `/api/transactions/delete/:id` — delete transaction
-  * **GET** `/api/budgets` — fetch all budgets
-  * **POST** `/api/budgets/add` — create/update monthly budget
-  * **PATCH** `/api/budgets/update/:id` — update a budget
-  * **DELETE** `/api/budgets/delete/:id` — delete a budget
+- The backend server runs at: `http://localhost:5000`
+- **API Endpoints**:
+  - **GET** `/api/transactions` — Retrieve all transactions.
+  - **POST** `/api/transactions/add` — Create a new transaction.
+  - **PATCH** `/api/transactions/update/:id` — Update an existing transaction.
+  - **DELETE** `/api/transactions/delete/:id` — Delete a transaction.
+  - **GET** `/api/budgets` — Retrieve all budgets.
+  - **POST** `/api/budgets/add` — Create or update a monthly budget.
+  - **PATCH** `/api/budgets/update/:id` — Update a specific budget.
+  - **DELETE** `/api/budgets/delete/:id` — Delete a budget.
 
 ### Frontend Setup
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+1. Change to the `frontend` directory:
+   ```bash
+   cd frontend
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Launch the development server:
+   ```bash
+   npm run dev
+   ```
 
-* App runs on `http://localhost:3000`
-* Pages:
-
-  * `/` — Transaction list with add/edit
-  * `/chart` — Bar, Pie, Budget comparison charts, and insights
-  * `/dashboard` — Summary cards
-  * `/monthlyBudget` — Monthly budget management form
+- The frontend application runs at: `http://localhost:3000`
+- **Key Pages**:
+  - **/**: Transaction list view with add/edit functionality.
+  - **/chart**: Visualizations including bar, pie, and budget comparison charts.
+  - **/dashboard**: Overview dashboard featuring summary cards.
+  - **/monthlyBudget**: Monthly budget management form.
 
 ## Usage
 
-1. **Manage Transactions**: Add, edit, and delete transactions.
-2. **Manage Budgets**: Set a monthly budget per category using the budget form.
-3. **Visualize**: Use the chart page to compare monthly spending versus budgets. View a pie chart for a category breakdown and spending insights.
-4. **Dashboard**: Track total spending, see a category breakdown, and view recent transactions.
+1. **Manage Transactions**: Add, edit, and delete financial transactions easily.
+2. **Set Budgets**: Define monthly budgets per category and track your spending.
+3. **Visualize Data**: Leverage interactive charts to analyze your spending trends.
+4. **Dashboard Insights**: Quickly review total expenses, category breakdowns, and recent transaction activity.
 
 ## License
 
 MIT © Mayank Rambirsingh Sagar
+
