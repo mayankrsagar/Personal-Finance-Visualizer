@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = "http://localhost:5000/api/transactions";
+const baseUrl = "https://personal-finance-visualizer-j5m1.onrender.com/api/transactions";
 
 export const fetchAllTransactions = async () => {
   try {
