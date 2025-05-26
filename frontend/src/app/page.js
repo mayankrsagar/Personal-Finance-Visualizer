@@ -124,25 +124,34 @@ export default function Home() {
   }));
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
+    <div className="max-w-4xl mx-auto p-4 space-y-6 pb-20 md:pb-4">
       <TransactionList transactionData={transactionData} onEdit={handleEdit} onDelete={handleDelete}/>
       
-
       <Dialog open={open} onOpenChange={(isOpen) => {
-    setOpen(isOpen);
-    if (!isOpen) {
-      setEdit(false);
-      setFormValues(null);
-      setId('');
-    }
-  }} >
+        setOpen(isOpen);
+        if (!isOpen) {
+          setEdit(false);
+          setFormValues(null);
+          setId('');
+        }
+      }}>
         <DialogTrigger asChild>
-          <Button className="absolute md:bottom-20 md:right-10 bottom:10 right:10" variant="default">{edit ? 'Edit Transaction' : 'Add Transaction'}</Button>
+          <Button 
+            className="fixed bottom-4 right-4 md:bottom-20 md:right-10" 
+            variant="default"
+          >
+            {edit ? 'Edit Transaction' : 'Add Transaction'}
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-  <DialogTitle>{edit ? 'Update Transaction' : 'New Transaction'}</DialogTitle></DialogHeader>
-          <TransactionForm onSubmit={handleFormSubmit} initialValues={formValues} edit={edit} />
+            <DialogTitle>{edit ? 'Update Transaction' : 'New Transaction'}</DialogTitle>
+          </DialogHeader>
+          <TransactionForm 
+            onSubmit={handleFormSubmit} 
+            initialValues={formValues} 
+            edit={edit} 
+          />
         </DialogContent>
       </Dialog>
     </div>

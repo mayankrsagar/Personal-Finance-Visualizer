@@ -126,7 +126,7 @@ loadData();
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
+    <div className="max-w-4xl mx-auto p-4 space-y-6 pb-20 md:pb-4">
       <TransactionList transactionData={monthlyBudget} loadBudgetData onDelete={handleDelete} onEdit={handleEdit}/>
       
 
@@ -139,7 +139,7 @@ loadData();
     }
   }} >
         <DialogTrigger asChild>
-          <Button className="absolute md:bottom-20 md:right-10 bottom:10 right:10" variant="default">{edit ? 'Edit Budget' : 'Add Budget'}</Button>
+          <Button className="fixed bottom-4 right-4 md:bottom-20 md:right-10" variant="default">{edit ? 'Edit Budget' : 'Add Budget'}</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
